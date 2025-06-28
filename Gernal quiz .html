@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>جنرل نالج کوئز</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .quiz-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ccc;
+      max-width: 500px;
+      margin: auto;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      background-color: #eee;
+      cursor: pointer;
+    }
+    .correct { background-color: lightgreen !important; }
+    .wrong { background-color: #f99 !important; }
+    #nextBtn { display: none; }
+    h2, h3 { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h2>📘 جنرل نالج کوئز</h2>
+  <div class="quiz-container">
+    <p id="question"><strong>سوال لوڈ ہو رہا ہے...</strong></p>
+    <div id="options"></div>
+    <button id="nextBtn" onclick="nextQuestion()">اگلا سوال</button>
+  </div>
+
+  <h3>🏆 آپ کے نمبر: <span id="score">0</span> / <span id="total">0</span></h3>
+
+  <script>
+    const adLink = "https://www.profitableratecpm.com/annx43yprp?key=ac36c2618cf6cb250f6adb4552c49b5f";
+
+    const questions = [
+      { question: "پاکستان کا قومی پھول کیا ہے؟", options: ["چنبیلی", "گلاب", "سورج مکھی"], correct: 0 },
+      { question: "دنیا کی سب سے بڑی دریا کون سی ہے؟", options: ["نیل", "امیزون", "مسوری"], correct: 1 },
+      { question: "انسانی جسم میں کتنی ہڈیاں ہوتی ہیں؟", options: ["206", "210", "201"], correct: 0 },
+      { question: "زمین سورج کے گرد چکر کتنے دن میں مکمل کرتی ہے؟", options: ["365", "366", "360"], correct: 0 },
+      { question: "پاکستان کا قومی جانور؟", options: ["شیر", "چیتا", "مارخور"], correct: 2 }
+    ];
+
+    let current = 0;
+    let score = 0;
+    document.getElementById("total").textContent = questions.length;
+
+    function loadQuestion() {
+      document.getElementById("nextBtn").style.display = "none";
+      const q = questions[current];
+      document.getElementById("question").textContent = q.question;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(btn, index === q.correct);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(btn, isCorrect) {
+      const buttons = document.querySelectorAll("#options button");
+      buttons.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.add("correct");
+        score++;
+      } else {
+        btn.classList.add("wrong");
+        buttons[questions[current].correct].classList.add("correct");
+      }
+
+      document.getElementById("score").textContent = score;
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      current++;
+
+      if (current === 5) {
+        window.open(adLink, "_blank");
+      }
+
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        document.getElementById("question").textContent = "🎉 کوئز مکمل ہو گیا!";
+        document.getElementById("options").innerHTML = "";
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    }
+
+    loadQuestion();
+  </script>
+
+  <!-- ✅ Social Bar Adsterra Code -->
+  <script type='text/javascript' src='//pl27027674.profitableratecpm.com/49/d9/d4/49d9d4d9cc4df97e164cd51eca4df83a.js'></script>
+
+</body>
+</html>
